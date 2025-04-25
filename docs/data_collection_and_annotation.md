@@ -50,10 +50,37 @@ Each audio clip was segmented and labeled with the following information:
 - **NumPy Pipelines**:  
   Converted aligned audio into cochleagrams and stored them with synchronized metadata.
 
-## Annotation Quality Control
+## Label Extraction and Encoding
 
-- **Annotators**:  
-  3 bilingual Mandarin speakers with linguistic training were involved in reviewing boundaries.
-  
-- **Validation Process**:  
-  Each segment was reviewed by two annotators. In case of mismatch, a third annotator resolved the conflict. Final boundary error tolerance was controlled within ±20 ms.
+All training data were automatically labeled based on the filenames of the preprocessed cochleagram `.npy` files.
+
+Each `.npy` file represents one stimulus segment derived from the same Chinese song, and filenames follow a structured convention such as:
+
+```
+我_1.npy, 我_2.npy, 我_3.npy, 可以.npy, 不拘一格.npy
+```
+
+To generate labels for classification:
+
+- The unique Chinese word (or syllable) was extracted from the filename prefix.
+- A sorted list of all unique labels was constructed.
+- Each label was assigned a unique integer ID.
+- The resulting dictionary (e.g., `{ "我": 0, "可以": 1, "不拘一格": 2 }`) was saved to `label_map.json`.
+
+Python script example:
+
+```python
+import os
+import json
+
+npy_folder = "autodl-tmp/TrainDataSet/cochleagrams_npy"
+npy_files = [f.replace('.npy', '') for f in os.listdir(npy_folder) if f.endswith('.npy')]
+label_dict = {word: idx for idx, word in enumerate(sorted(npy_files))}
+
+with open("autodl-tmp/TrainDataSet/labels/label_map.json", "w", encoding="utf-8") as f:
+    json.dump(label_dict, f, ensure_ascii=False, indent=4)
+
+print("successfully generated")
+```
+
+This label map was used for one-hot encoding in both the word and syllable classification tasks.
