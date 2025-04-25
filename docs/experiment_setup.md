@@ -24,7 +24,7 @@ We used a dual-branch convolutional neural network architecture adapted from Kel
 - Optimizer: Adam  
 - Learning rate: `1e-4`  
 - Batch size: 32  
-- Epochs: 3  
+- Epochs: 6 for word-level training, 7 for syllable-level training  
 - Loss: Categorical cross-entropy  
 - Loss weights: `fctop_W: 1.0`, `fctop_G: 0.0`  
 - Validation split: 10%
@@ -42,9 +42,8 @@ Two independent fine-tuning setups:
   - Preprocessing: filterbank analysis, envelope compression, Lanczos interpolation
 - **Output**: Softmax probability over 63 or 84 categories (task-dependent)
 
-## Test Conditions
-
+## Train Set Composition and Data Augmentation
 - **Clean**: Original speech (TTS + human)
-- **Noisy**: Augmented with THCHS-30 additive noise, random SNR (5–20 dB), pitch shifting, and time-stretching
+- **Noisy**: Augmented with THCHS-30 additive noise, different SNR (1,5,10,15 dB), pitch shifting
 
 These settings were used to test model robustness and generalization across natural and degraded audio conditions.
