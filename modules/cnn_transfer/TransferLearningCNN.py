@@ -45,9 +45,9 @@ new_num_classes_word = 63
 model = build_kell2018_cnn(input_shape=(256,256,1), num_classes_word=new_num_classes_word, num_classes_genre=43)
 
 # Load pretrained weights and assign to corresponding layers (Kell et al., 2018)
-weights_early_path = "autodl-tmp/Weights/network_weights_early_layers_fixed.npy"
-weights_genre_path = "autodl-tmp/Weights/network_weights_genre_branch_fixed.npy"
-weights_word_path = "autodl-tmp/Weights/network_weights_word_branch_fixed.npy"
+weights_early_path = "Weights/network_weights_early_layers_fixed.npy"
+weights_genre_path = "Weights/network_weights_genre_branch_fixed.npy"
+weights_word_path = "Weights/network_weights_word_branch_fixed.npy"
 
 # Load weight dictionaries
 weights_early = np.load(weights_early_path, allow_pickle=True).item()
@@ -85,7 +85,7 @@ for layer in model.layers:
 model.summary()
 
 # Load label_map and update number of word classes
-label_map_path = "autodl-tmp/TrainSet/labels/label_map.json"
+label_map_path = "TrainSet/labels/wordLabel.json"
 with open(label_map_path, "r", encoding="utf-8") as f:
     label2id = json.load(f)
 new_num_classes_word = len(label2id)
@@ -104,7 +104,7 @@ model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
               metrics={'fctop_W': 'accuracy'})
 
 # Load training data and generate labels
-npy_folder = "autodl-tmp/TrainSet/cochleagrams_npy/"
+npy_folder = "TrainSet/cochleagrams_npy/"
 
 X_train_list = []
 y_train_list = []
@@ -150,6 +150,6 @@ history = model.fit(X_train, {'fctop_W': y_train, 'fctop_G': dummy_y_genre},
 print("Fine-tuning completed!")
 
 # Save the fine-tuned model
-model_save_path = "autodl-tmp/fine_tuned_model.h5"
+model_save_path = "fine_tuned_model.h5"
 model.save(model_save_path)
 print(f"Training complete. Model saved to {model_save_path}")
