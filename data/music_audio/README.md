@@ -7,14 +7,14 @@ This folder contains **test music stimuli** used for model evaluation and EEG ex
 Each test stimulus includes:
 
 - An **MP3 audio file** (`musicX.mp3`) containing the music stimulus.
-- A corresponding **TextGrid file** (`musicX.TextGrid`) with phoneme or word-level time-alignment annotations, compatible with **Praat** software.
+- A corresponding **TextGrid file** (`musicX.TextGrid`) with phoneme-, syllable- and word-level time-alignment annotations, compatible with **Praat** software.
 
 Example:
 - `music1.mp3` ⟶ `music1.TextGrid`
 - `music2.mp3` ⟶ `music2.TextGrid`
 - ...
 
-> **NOTE**: The audio files are in MP3 format. For further processing (e.g., cochleagram generation or feature extraction), they need to be converted to **16kHz WAV format**.
+> **NOTE**: The audio files are in MP3 format. For further processing (e.g., cochleagram generation or feature extraction), they need to be converted to **16kHz .wav format**.
 
 ### Stimulus Variants
 
