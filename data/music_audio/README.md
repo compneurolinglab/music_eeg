@@ -7,7 +7,7 @@ This folder contains **test music stimuli** used for model evaluation, feature e
 Each test stimulus includes:
 
 - An **MP3 audio file** (`musicX.mp3`) containing the music stimulus.
-- A corresponding **TextGrid file** (`musicX.TextGrid`) with phoneme-, syllable- and word-level time-alignment annotations, compatible with **Praat** software.
+- A corresponding **TextGrid file** (`musicX.TextGrid`) with phoneme-, syllable- and word-level time-alignment annotations, compatible with **Praat**.
 
 Example:
 - `music1.mp3` ⟶ `music1.TextGrid`
