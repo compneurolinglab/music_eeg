@@ -20,7 +20,7 @@ Music-EEG-Cognition/
 │
 ├── docs/                # Documentation and architecture diagrams
 └── README.md            # Project overview and instructions
-
+```
 
 ---
 
