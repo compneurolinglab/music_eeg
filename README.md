@@ -25,11 +25,12 @@ Music-EEG-Cognition/
 
 ## Key Features
 
-- **Dual-pathway CNN model** for music and linguistic auditory decoding  
+- **Support for speed-modulated stimuli** (1x, 2x, 3x, 4x)
 - **EEG + audio integration** to study neural resource allocation  
+- **Dual-pathway CNN model** for music and linguistic auditory decoding  
 - **Cochleagram-based preprocessing** mimicking the human cochlea  
 - **Transfer learning** with fine-tuned convolutional networks  
-- **Support for speed-modulated stimuli** (1x, 2x, 3x, 4x)  
+
 
 ---
 
@@ -46,23 +47,6 @@ All experiments were conducted on a Linux-based server equipped with:
 - **Memory**: 256 GB DDR4  
 - **Framework**: TensorFlow 2.11.0 with Keras API  
 - **Audio Processing Libraries**: pycochleagram, librosa, praat-parselmouth  
-
-### Model Architecture and Training Configuration
-We used a dual-branch convolutional neural network architecture adapted from Kell et al. (2018), consisting of:
-
-- A shared convolutional feature extractor with three layers (conv1, conv2, conv3)
-- Two task-specific classification branches: **Word** and **Genre**
-- Only the Word Branch was fine-tuned; the Genre Branch and shared layers were frozen
-
-**Training hyperparameters**:
-
-- Optimizer: Adam  
-- Learning rate: 1e-4  
-- Batch size: 32  
-- Epochs: 3  
-- Loss: Categorical cross-entropy  
-- Loss weights: fctop_W: 1.0, fctop_G: 0.0  
-- Validation split: 10%  
 
 ### Experimental Groups
 Two independent fine-tuning setups:
@@ -128,49 +112,8 @@ Each audio clip was segmented and labeled with the following information:
 - **NumPy Pipelines**:  
   Converted aligned audio into cochleagrams and stored them with synchronized metadata.
 
-### Annotation Quality Control
-- **Annotators**:  
-  3 bilingual Mandarin speakers with linguistic training were involved in reviewing boundaries.
-
-- **Validation Process**:  
-  Each segment was reviewed by two annotators. In case of mismatch, a third annotator resolved the conflict. Final boundary error tolerance was controlled within ±20 ms.
-
-### Label Extraction and Encoding
-All training data were automatically labeled based on the filenames of the preprocessed cochleagram `.npy` files.
-
-Each `.npy` file represents one stimulus segment derived from the same Chinese song, and filenames follow a structured convention such as:
-
-```
-我_1.npy, 我_2.npy, 可以.npy, 沙滩.npy
-```
-
-To generate labels for classification:
-
-- The unique Chinese word (or syllable) was extracted from the filename prefix.
-- A sorted list of all unique labels was constructed.
-- Each label was assigned a unique integer ID.
-- The resulting dictionary (e.g., `{ "我": 0, "可以": 1, "沙滩": 2 }`) was saved to `label_map.json`.
-
-**Python script example**:
-```python
-import os
-import json
-
-npy_folder = "autodl-tmp/TrainDataSet/cochleagrams_npy"
-npy_files = [f.replace('.npy', '') for f in os.listdir(npy_folder) if f.endswith('.npy')]
-label_dict = {word: idx for idx, word in enumerate(sorted(npy_files))}
-
-with open("autodl-tmp/TrainDataSet/labels/label_map.json", "w", encoding="utf-8") as f:
-    json.dump(label_dict, f, ensure_ascii=False, indent=4)
-
-print("finished")
-```
-
-This label map was used for one-hot encoding in both the word and syllable classification tasks.
-
-
 ## Getting Started
-
+(Core codes is pasted below)
 1. Convert audio `.mp3` files in `data/music_audio/` to 16kHz `.wav`  
 2. Generate cochleagrams using `cochleagram_generator.py`  
 3. Train or evaluate CNN models with `TransferLearningCNN.py`  
@@ -243,6 +186,41 @@ Includes interactive notebooks demonstrating how to process audio data, extract 
 - `demo_cnn_prediction.ipynb`: Shows prediction results from the trained CNN model.  
 
 > Note: Audio files should be converted to 16kHz `.wav` format for compatibility with feature extraction and model input.
+
+
+### Label Extraction and Encoding
+All training data were automatically labeled based on the filenames of the preprocessed cochleagram `.npy` files.
+
+Each `.npy` file represents one stimulus segment derived from the same Chinese song, and filenames follow a structured convention such as:
+
+```
+我_1.npy, 我_2.npy, 可以.npy, 沙滩.npy
+```
+
+To generate labels for classification:
+
+- The unique Chinese word (or syllable) was extracted from the filename prefix.
+- A sorted list of all unique labels was constructed.
+- Each label was assigned a unique integer ID.
+- The resulting dictionary (e.g., `{ "我": 0, "可以": 1, "沙滩": 2 }`) was saved to `label_map.json`.
+
+**Python script example**:
+```python
+import os
+import json
+
+npy_folder = "autodl-tmp/TrainDataSet/cochleagrams_npy"
+npy_files = [f.replace('.npy', '') for f in os.listdir(npy_folder) if f.endswith('.npy')]
+label_dict = {word: idx for idx, word in enumerate(sorted(npy_files))}
+
+with open("autodl-tmp/TrainDataSet/labels/label_map.json", "w", encoding="utf-8") as f:
+    json.dump(label_dict, f, ensure_ascii=False, indent=4)
+
+print("finished")
+```
+
+This label map was used for one-hot encoding in both the word and syllable classification tasks.
+
 
 
 ## Cochleagram Generation Code
@@ -324,19 +302,32 @@ if __name__ == "__main__":
     process_wav_folder_parallel(input_folder, output_folder, num_workers=5)
 ```
 
-#### cnn_transfer/
-Contains core scripts for training the CNN using transfer learning and preprocessing audio into cochleagram representations.
-
-- `cochleagram_generator.py`: Generates cochleagram images from audio signals.  
-- `TransferLearningCNN.py`: Defines and fine-tunes the CNN model using transfer learning techniques.  
+- cochleagram_generator generates cochleagram images from audio signals.  
+- TransferLearningCNN defines and fine-tunes the CNN model using transfer learning techniques.  
 
 > The cochleagrams generated by `cochleagram_generator.py` should be converted into `.npy` format before used as input to the CNN defined in `TransferLearningCNN.py`.
 
-Each module is designed to be modular and reusable across different stages of the pipeline. For further details, refer to the README files in each subfolder.
-
-
+Each module is designed to be modular and reusable across different stages of the pipeline.
 
 ---
+
+## CNN Model Architecture and Training Configuration
+We used a dual-branch convolutional neural network architecture adapted from Kell et al. (2018), consisting of:
+
+- A shared convolutional feature extractor with three layers (conv1, conv2, conv3)
+- Two task-specific classification branches: **Word** and **Genre**
+- Only the Word Branch was fine-tuned to fit the Mandarin word-level and syllable-level tasks; the Genre Branch and shared layers were frozen
+
+**Training hyperparameters**:
+
+- Optimizer: Adam  
+- Learning rate: 1e-4  
+- Batch size: 32  
+- Epochs: 3  
+- Loss: Categorical cross-entropy  
+- Loss weights: fctop_W: 1.0, fctop_G: 0.0  
+- Validation split: 10%  
+
 
 ## Transfer Learning CNN Code
 
