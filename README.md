@@ -62,9 +62,7 @@ This project utilizes code from [mcdermottLab/kelletal2018](https://github.com/m
 ## Contact
 
 For questions or contributions, feel free to open an issue or pull request.
-qimiaogao2-c@my.cityu.edu.hk
 
 ---
 
 **License**: [MIT](LICENSE)  
-**Maintainer**: [@CiaraGao](https://github.com/CiaraGao)
