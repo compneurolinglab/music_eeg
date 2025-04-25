@@ -1,6 +1,6 @@
 ## Demo Module
 
-This folder contains demo notebooks for feature extraction, speech synthesis, and CNN-based prediction used in the Music-EEG Cognition project.
+This folder contains demo notebooks for feature extraction(and merge), training data synthesis, and CNN-based prediction used in the Music-EEG Cognition project.
 
 ### Notebooks
 
@@ -9,6 +9,3 @@ This folder contains demo notebooks for feature extraction, speech synthesis, an
 - `merge_features.ipynb`: Merges extracted features for downstream processing.
 - `textToSpeech.ipynb`: Generates speech audio using TTS systems.
 
-### Notes
-
-The audio files used in the `Stimuli` folder are in MP3 format. For further processing, please convert them to 16kHz WAV format.
