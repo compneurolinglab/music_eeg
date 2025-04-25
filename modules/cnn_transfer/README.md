@@ -6,6 +6,7 @@ This module includes scripts used for cochleagram generation and CNN-based trans
 
 - `cochleagram_generator.py`: Converts audio waveforms into cochleagram representations. These cochleagrams capture time-frequency auditory features inspired by the human cochlea.
 - `TransferLearningCNN.py`: Defines and trains a CNN model using transfer learning. The model takes cochleagrams as input and fine-tunes classification layers for specific tasks.
+- `sample_coch_'keyi'_whiteNoise_SNR5.png` is a sample cochleagram for CNN training.
 
 ### Workflow
 
