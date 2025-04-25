@@ -14,12 +14,12 @@ Example:
 - `music2.mp3` ⟶ `music2.TextGrid`
 - ...
 
-> **NOTE**: The audio files are in MP3 format. For further processing (e.g., cochleagram generation or feature extraction), they need to be converted to **16kHz .wav format**.
+> **NOTE**: Audio files provided are in MP3 format. For further processing (e.g., cochleagram generation or feature extraction), they need to be converted to **16kHz .wav format**.
 
 ### Stimulus Variants
 
-The test stimuli may be played at different speeds (e.g., 1.0x, 2.0x, 3.0x, 4.0x) in behavioral or EEG settings. Please ensure consistent alignment between speed-adjusted audio and its corresponding label file.
+The test stimuli is played at different speeds (e.g., 1.0x, 2.0x, 3.0x, 4.0x) in behavioral or EEG settings. Please ensure consistent alignment between speed-adjusted audio and its corresponding annotation file.
 
 ---
 
-These files are designed for use during testing or model inference only. For training stimuli and label mappings, refer to the `/data/label/` and other relevant folders.
+These files are designed for use during testing, model inference and feature(activation value) extraction only. For training stimuli and label mappings, please refer to the `/data/label/` and other relevant folders.
