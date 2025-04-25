@@ -12,7 +12,7 @@ Includes interactive notebooks demonstrating how to process audio data, extract 
 - `textToSpeech.ipynb`: Converts text into synthetic speech using TTS.
 - `demo_cnn_prediction.ipynb`: Shows prediction results from the trained CNN model.
 
-> **Note**: Audio files in the `Stimuli` folder are in MP3 format. Please convert them to 16kHz WAV format for compatibility with feature extraction and model input.
+> **Note**: Audio files should be convert to 16kHz WAV format for compatibility with feature extraction and model input.
 
 #### `cnn_transfer/`
 Contains core scripts for training the CNN using transfer learning and preprocessing audio into cochleagram representations.
