@@ -12,10 +12,4 @@ This folder contains label-to-ID mapping files used for classification tasks in 
 
 ### Note
 
-- The filenames listed previously as `*_lable_map.json` appear to have a typo: "lable" → should be "label".
-- The actual filenames in this directory are correctly spelled:  
-  - `wordLabel.json`  
-  - `syllableLabel.json`  
-  - `genreLabel.json`
-
 Make sure to load these JSON files before training or evaluating models that depend on label mappings.
