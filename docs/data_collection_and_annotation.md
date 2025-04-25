@@ -2,23 +2,27 @@
 
 ## Audio Sources
 
-Two types of speech data were used for training and evaluation:
+Two types of speech data were used for training and 10% of them were used for validation:
 
 - **Synthetic Speech**:  
-  Generated using **Edge TTS** (Microsoft Azure) and **Google TTS** engines. Both Mandarin Chinese female and male voices were used for diversity.
+  Generated using **Edge TTS** (Microsoft Azure) engines. Both Mandarin Chinese female and male voices were used for diversity.
   
 - **Human Recordings**:  
-  A set of Chinese volunteers read and recorded selected song lyrics in a quiet environment. Recordings were performed using high-quality USB microphones at a 16 kHz sampling rate.
+  Chinese volunteers read and recorded selected song lyrics in a quiet environment. Recordings were performed using high-quality USB microphones at a 16 kHz sampling rate.
 
 ## Text Materials
 
-The linguistic content used for audio generation included:
+The linguistic content used for all speech stimuli was derived from a **single full-length Mandarin Chinese song**. The lyrics of this song were used consistently across all conditions and speakers.
 
-- **Song Lyrics**:  
-  Over 10,000 unique lines of Chinese lyrics sourced from public-domain songs, curated to ensure phonetic coverage and word diversity.
-  
-- **Synthetic Sentences**:  
-  Additional Mandarin sentences were created using prompt templates to enrich low-frequency word coverage and syllable transitions.
+Two classification tasks were constructed by annotating the lyrics at different linguistic levels:
+
+- **Word Task**:  
+  Based on word-level annotations using Praat. Used to train a dual-pathway CNN for **word classification** + **genre classification**.
+
+- **Syllable Task**:  
+  Based on syllable-level annotations using Praat. Used to train a separate dual-pathway CNN for **syllable classification** + **genre classification**.
+
+This setup ensured controlled comparison of word- and syllable-level decoding while preserving consistent acoustic and lexical content.
 
 ## Annotation Procedure
 
