@@ -8,7 +8,18 @@ Inspired by previous studies in auditory cognition and information theory, we in
 
 ## Project Structure
 
-Music-EEG-Cognition/ │ ├── data/ # Contains test audio stimuli and label mappings │ ├── music_audio/ # MP3 music files and TextGrid annotations (test stimuli) │ └── label/ # JSON mappings for word, syllable, and genre classification │ ├── modules/ # Model and preprocessing code │ ├── Demo/ # Feature extraction, TTS, and CNN demo notebooks │ └── cnn_transfer/ # Transfer learning CNN and cochleagram generator │ ├── docs/ # Project documentation, architecture diagrams │ └── README.md # Project description and overview
+```bash
+Music-EEG-Cognition/
+├── data/                # Dataset and labels
+│   ├── music_audio/     # Test audio stimuli (.mp3) and TextGrid annotations
+│   └── label/           # JSON label mappings (word, syllable, genre)
+│
+├── modules/             # Core processing modules
+│   ├── Demo/            # Jupyter notebooks for demo: TTS, feature extraction, prediction
+│   └── cnn_transfer/    # Transfer learning CNN and cochleagram generator
+│
+├── docs/                # Documentation and architecture diagrams
+└── README.md            # Project overview and instructions
 
 
 ---
