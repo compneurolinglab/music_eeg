@@ -1,6 +1,6 @@
 # Experimental Documentation
 
-## 🧪 Experimental Setup
+## Experimental Setup
 
 ### Hardware and Software Environment
 All experiments were conducted on a Linux-based server equipped with:
@@ -44,7 +44,7 @@ Two independent fine-tuning setups:
 - **Clean**: Original speech (TTS + human)  
 - **Noisy**: Augmented with THCHS-30 additive noise, random SNR (5–20 dB), pitch shifting, and time-stretching  
 
-## 🎤 Data Collection and Annotation Procedures
+## Data Collection and Annotation Procedures
 
 ### Audio Sources
 Two types of speech data were used for training and evaluation:
@@ -128,7 +128,7 @@ label_dict = {word: idx for idx, word in enumerate(sorted(npy_files))}
 with open("autodl-tmp/TrainDataSet/labels/label_map.json", "w", encoding="utf-8") as f:
     json.dump(label_dict, f, ensure_ascii=False, indent=4)
 
-print("✅ 标签映射表生成成功！")
+print("finished")
 ```
 
 This label map was used for one-hot encoding in both the word and syllable classification tasks.
@@ -151,8 +151,7 @@ Music-EEG-Cognition/
 │   └── label/           # JSON label mappings (word, syllable, genre)
 │
 ├── modules/             # Core processing modules
-│   ├── Demo/            # Jupyter notebooks for demo: TTS, feature extraction, prediction
-│   └── cnn_transfer/    # Transfer learning CNN and cochleagram generator
+│   └── Demo/            # Jupyter notebooks for demo: TTS, feature extraction, prediction
 │
 ├── docs/                # Documentation and architecture diagrams
 └── README.md            # Project overview and instructions
@@ -186,22 +185,6 @@ Refer to the `docs/` folder for:
 - CNN architecture diagrams  
 - Experimental setup  
 - Data collection and annotation procedures  
-
----
-
-## Acknowledgements
-
-This project utilizes code from [mcdermottLab/kelletal2018](https://github.com/mcdermottLab/kelletal2018), developed by Kell et al. for their research published in *Neuron* (2018). We thank the authors for making their code available.
-
----
-
-## Contact
-
-For questions or contributions, feel free to open an issue or pull request.
-
----
-
-**License**: [MIT](LICENSE)  
 
 ---
 
@@ -405,3 +388,17 @@ def process_wav_folder_parallel(input_folder, output_folder, num_workers=1):
 if __name__ == "__main__":
     process_wav_folder_parallel(input_folder, output_folder, num_workers=5)
 ```
+
+## Acknowledgements
+
+This project utilizes code from [mcdermottLab/kelletal2018](https://github.com/mcdermottLab/kelletal2018), developed by Kell et al. for their research published in *Neuron* (2018). We thank the authors for making their code available.
+
+---
+
+## Contact
+
+For questions or contributions, feel free to open an issue or pull request.
+
+---
+
+**License**: [MIT](LICENSE)  
