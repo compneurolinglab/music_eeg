@@ -1,6 +1,6 @@
 ## Music Audio Stimuli (Test Set)
 
-This folder contains **test music stimuli** used for model evaluation and EEG experiments in the Music-EEG Cognition project.
+This folder contains **test music stimuli** used for model evaluation, feature extraction and EEG experiments in the Music-EEG Cognition project.
 
 ### Contents
 
