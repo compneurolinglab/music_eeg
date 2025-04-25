@@ -53,6 +53,12 @@ Refer to the `docs/` folder for:
 
 ---
 
+## Acknowledgements
+
+This project utilizes code from [mcdermottLab/kelletal2018](https://github.com/mcdermottLab/kelletal2018), developed by Kell et al. for their research published in *Neuron* (2018). We thank the authors for making their code available.
+
+---
+
 ## Contact
 
 For questions or contributions, feel free to open an issue or pull request.
