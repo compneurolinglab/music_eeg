@@ -61,7 +61,7 @@ Two independent fine-tuning setups:
 
 ### Test Conditions
 - **Clean**: Original speech (TTS + human)  
-- **Noisy**: Augmented with THCHS-30 additive noise, random SNR (5–20 dB), pitch shifting, and time-stretching  
+- **Noisy**: Augmented with THCHS-30 additive noise, random SNR (1,5,10,15 dB), pitch shifting, and time-stretching  
 
 ## Data Collection and Annotation Procedures
 
