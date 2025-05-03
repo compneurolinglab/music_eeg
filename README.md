@@ -10,14 +10,15 @@ Inspired by previous studies in auditory cognition and information theory, we in
 
 ```bash
 Music-EEG-Cognition/
-├── data/                # Dataset and labels
-│   ├── music_audio/     # Test audio stimuli (.mp3) and TextGrid annotations
-│   └── label/           # JSON label mappings (word, syllable, genre)
+├── data/                # Dataset and labels (word- and syllable-level)
+│   ├── music_audio/     # Test audio stimuli (.mp3) and corresponding TextGrid annotations
+│   └── label/           # JSON label mappings (language in word- and syllable-level, genre)
 │
 ├── modules/             # Core processing modules
-│   └── Demo/            # Jupyter notebooks for demo: TTS, feature extraction, prediction
+│   └── Demo/            # Jupyter notebooks for demo: TextToSpeech tech for dataset generation, prediction, feature extraction
 │
 ├── docs/                # Documentation and architecture diagrams
+|
 └── README.md            # Project overview and instructions
 ```
 
