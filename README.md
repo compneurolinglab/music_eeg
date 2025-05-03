@@ -15,7 +15,7 @@ Music-EEG-Cognition/
 │   └── label/           # JSON label mappings (language in word- and syllable-level, genre)
 │
 ├── modules/             # Core processing modules
-│   └── Demo/            # Jupyter notebooks for demo: TextToSpeech tech for dataset generation, prediction, feature extraction
+│   └── Demo/            # Jupyter notebooks for demo: TTS for dataset generation, prediction, feature extraction
 │
 ├── docs/                # Documentation and architecture diagrams
 |
