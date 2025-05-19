@@ -69,9 +69,8 @@ fine-tuning setups:
 Two types of speech data were used for training and evaluation:
 
 - **Synthetic Speech**:  
-  Generated using Edge TTS (Microsoft Azure) engines. Both Mandarin Chinese female and male voices were used for diversity.\
-  <details> <summary><strong>▶️ Click to view TTS Voices Table</strong></summary>
-  ### 🗣️ Edge TTS Chinese Voices Used
+  Generated using Edge TTS (Microsoft Azure) engines. Both Mandarin Chinese female and male voices were used for diversity.
+  Edge TTS Chinese Voices Used:
 
 | Voice Name        | Gender | Locale    | Description                            |
 |-------------------|--------|-----------|----------------------------------------|
@@ -82,8 +81,7 @@ Two types of speech data were used for training and evaluation:
 | YunyangNeural     | Male   | zh-CN     | Clear and steady – suitable for general content |
 | HsiaoChenNeural   | Female | zh-TW     | Friendly and expressive – Taiwanese Mandarin |
 | HsiaoYuNeural     | Female | zh-TW     | Pleasant and casual – Taiwanese Mandarin |
-| YunJheNeural      | Male   | zh-TW     | Calm and clear – Taiwanese Mandarin |
-</details>
+
 
 - **Human Recordings**:  
   A native Chinese volunteer read and recorded selected song lyrics in a quiet environment. Recordings were performed using high-quality USB microphones at a 16 kHz sampling rate.
