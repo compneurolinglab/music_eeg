@@ -50,11 +50,11 @@ Music-EEG-Cognition/
 
 ---
 
-# Experimental Documentation
+## Experimental Documentation
 
-## Experimental Setup
+### Experimental Setup
 
-### Hardware and Software Environment
+#### Hardware and Software Environment
 All experiments were conducted on a Linux-based server equipped with:
 
 - **Operating System**: Ubuntu 20.04 LTS  
@@ -64,23 +64,23 @@ All experiments were conducted on a Linux-based server equipped with:
 - **Framework**: TensorFlow 2.11.0 with Keras API  
 - **Audio Processing Libraries**: pycochleagram, librosa, praat-parselmouth  
 
-### Experimental Groups
+#### Experimental Groups
 fine-tuning setups:
 
 - **Syllable Recognition**: 84-class syllable classification  
 
-### Input and Output Format
+#### Input and Output Format
 - **Input**: 256×256 cochleagram images from 16 kHz Mandarin audio clips  
 - **Preprocessing**: filterbank analysis, envelope compression, Lanczos interpolation  
 - **Output**: Softmax probability over 63 or 84 categories (task-dependent)  
 
-### Test Conditions
+#### Test Conditions
 - **Clean**: Original speech (TTS + human)    9 × 84
 - **Noisy**: Augmented with THCHS-30 additive noise with SNR (1,5,10,15 dB), pitch shifting(±1,2,3), and time-stretching(0.8,0.9,1.1,1.2,1.3,1.4,1.5) 
 
-## Data Collection and Annotation Procedures
+### Data Collection and Annotation Procedures
 
-### Audio Sources
+#### Audio Sources
 Two types of speech data were used for training and evaluation:
 
 - **Synthetic Speech**:  
@@ -101,7 +101,7 @@ Two types of speech data were used for training and evaluation:
 - **Human Recordings**:  
   A native Chinese volunteer read and recorded selected song lyrics in a quiet environment. Recordings were performed using high-quality USB microphones at a 16 kHz sampling rate.
 
-### Text Materials
+#### Text Materials
 The linguistic content used for all speech stimuli was derived from a single full-length Mandarin Chinese song. The lyrics of this song were used consistently across all conditions and speakers.
 
 One classification task was constructed by annotating the lyrics at syllable level:
@@ -111,13 +111,13 @@ One classification task was constructed by annotating the lyrics at syllable lev
 
 This setup ensured controlled comparison of syllable-level decoding while preserving consistent acoustic and lexical content.
 
-### Annotation Procedure for Transfer Learning
+#### Annotation Procedure for Transfer Learning
 
 - **Class Labels**:
   - For Syllable Task: 84-class Chinese syllable labels
   Labels were encoded into one-hot vectors using a `label_map.json` file.
 
-### Tools and Automation
+#### Tools and Automation
 
 - **Praat + Parselmouth**:  
   Used for manual alignment correction and boundary visualization.
@@ -128,7 +128,7 @@ This setup ensured controlled comparison of syllable-level decoding while preser
 - **NumPy Pipelines**:  
   Converted aligned audio into cochleagrams and stored them with synchronized metadata.
 
-## Getting Started
+### Getting Started
 (Core codes is pasted below)
 1. Convert audio `.mp3` files in `data/music_audio/` to 16kHz `.wav`  
 2. Generate cochleagrams using `cochleagram_generator.py`  
@@ -138,7 +138,7 @@ This setup ensured controlled comparison of syllable-level decoding while preser
 
 ---
 
-## Documentation
+### Documentation
 
 Refer to the `docs/` folder for:
 - CNN architecture diagrams  
@@ -147,11 +147,11 @@ Refer to the `docs/` folder for:
 
 ---
 
-## Dataset Directory
+### Dataset Directory
 
 This folder contains data used in the Music-EEG Cognition project, including stimulus audio files and label mappings for classification tasks.
 
-### music_audio/
+#### music_audio/
 Contains test music stimuli in MP3 format and their corresponding TextGrid annotations. These are used during the testing phase or in EEG experiments.
 
 Each stimulus consists of:
@@ -161,7 +161,7 @@ Each stimulus consists of:
 
 > Note: MP3 files must be converted to 16kHz .wav format before use in preprocessing or CNN-based models.
 
-### label/
+#### label/
 Includes JSON files mapping human-readable labels (words, syllables, genres) to numeric class indices used for training and evaluating the model.
 
 - `wordLabel.json`: Word-to-index mapping for word-level classification  
@@ -172,26 +172,26 @@ These files are essential for decoding model predictions and constructing catego
 
 ---
 
-## Usage Flow Overview
+### Usage Flow Overview
 
-### Audio Processing
+#### Audio Processing
 Convert `.mp3` files in `music_audio/` to `.wav` format (16kHz) for input.
 
-### Label Alignment
+#### Label Alignment
 Use `.TextGrid` files for aligning and segmenting input audio with linguistic annotations.
 
-### Model Training/Evaluation
+#### Model Training/Evaluation
 Load appropriate label maps from `label/` when training or interpreting outputs from word/syllable/genre CNN classifiers.
 
 > For more details on how these data files are used in training and evaluation, please refer to the corresponding modules under `/modules/`.
 
 ---
 
-## Modules
+### Modules
 
 This directory contains modular components used in the Music-EEG Cognition project. Each submodule performs a specific stage in the overall processing pipeline, including data preprocessing, feature extraction, transfer learning, and demo inference.
 
-### Submodules
+#### Submodules
 
 #### Demo/
 Includes interactive notebooks demonstrating how to process audio data, extract features, synthesize speech, and perform CNN-based predictions.
@@ -204,7 +204,7 @@ Includes interactive notebooks demonstrating how to process audio data, extract 
 > Note: Audio files should be converted to 16kHz `.wav` format for compatibility with feature extraction and model input.
 
 
-### Label Extraction and Encoding
+#### Label Extraction and Encoding
 All training data were automatically labeled based on the filenames of the preprocessed cochleagram `.npy` files.
 
 Each `.npy` file represents one stimulus segment derived from the same Chinese song, and filenames follow a structured convention such as:
@@ -239,7 +239,7 @@ This label map was used for one-hot encoding in both the word and syllable class
 
 
 
-## Cochleagram Generation Code
+### Cochleagram Generation Code
 
 ```python
 import os
@@ -327,7 +327,7 @@ Each module is designed to be modular and reusable across different stages of th
 
 ---
 
-## CNN Model Architecture and Training Configuration
+### CNN Model Architecture and Training Configuration
 We used a dual-branch convolutional neural network architecture adapted from Kell et al. (2018), consisting of:
 
 - A shared convolutional feature extractor with three layers (conv1, conv2, conv3)
@@ -345,7 +345,7 @@ We used a dual-branch convolutional neural network architecture adapted from Kel
 - Validation split: 10%  
 
 
-## Transfer Learning CNN Code
+### Transfer Learning CNN Code
 
 ```python
 import os
