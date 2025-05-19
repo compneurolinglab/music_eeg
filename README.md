@@ -10,9 +10,9 @@ Inspired by previous studies in auditory cognition and information theory, we in
 
 ```bash
 Music-EEG-Cognition/
-├── data/                # Dataset and labels (word- and syllable-level)
+├── data/                # Dataset and labels (syllable)
 │   ├── music_audio/     # Test audio stimuli (.mp3) and corresponding TextGrid annotations
-│   └── label/           # JSON label mappings (language in word- and syllable-level, genre)
+│   └── label/           # JSON label mappings (syllable, genre)
 │
 ├── modules/             # Core processing modules
 │   └── Demo/            # Jupyter notebooks for demo: TTS for dataset generation, prediction, feature extraction
@@ -50,9 +50,8 @@ All experiments were conducted on a Linux-based server equipped with:
 - **Audio Processing Libraries**: pycochleagram, librosa, praat-parselmouth  
 
 ### Experimental Groups
-Two independent fine-tuning setups:
+fine-tuning setups:
 
-- **Word Recognition**: 63-class Chinese word classification  
 - **Syllable Recognition**: 84-class syllable classification  
 
 ### Input and Output Format
@@ -61,8 +60,8 @@ Two independent fine-tuning setups:
 - **Output**: Softmax probability over 63 or 84 categories (task-dependent)  
 
 ### Test Conditions
-- **Clean**: Original speech (TTS + human)  
-- **Noisy**: Augmented with THCHS-30 additive noise, random SNR (1,5,10,15 dB), pitch shifting, and time-stretching  
+- **Clean**: Original speech (TTS + human)    9 × 84
+- **Noisy**: Augmented with THCHS-30 additive noise with SNR (1,5,10,15 dB), pitch shifting(±1,2,3), and time-stretching(0.8,0.9,1.1,1.2,1.3,1.4,1.5) 
 
 ## Data Collection and Annotation Procedures
 
@@ -70,10 +69,24 @@ Two independent fine-tuning setups:
 Two types of speech data were used for training and evaluation:
 
 - **Synthetic Speech**:  
-  Generated using Edge TTS (Microsoft Azure) and Google TTS engines. Both Mandarin Chinese female and male voices were used for diversity.
+  Generated using Edge TTS (Microsoft Azure) engines. Both Mandarin Chinese female and male voices were used for diversity.\
+  <details> <summary><strong>▶️ Click to view TTS Voices Table</strong></summary>
+  ### 🗣️ Edge TTS Chinese Voices Used
+
+| Voice Name        | Gender | Locale    | Description                            |
+|-------------------|--------|-----------|----------------------------------------|
+| XiaoxiaoNeural    | Female | zh-CN     | Warm, natural – suitable for narration or news |
+| XiaoyiNeural      | Female | zh-CN     | Lively – suitable for stories or cartoons |
+| YunxiNeural       | Male   | zh-CN     | Professional – suitable for broadcasts |
+| YunjianNeural     | Male   | zh-CN     | Energetic – suitable for sports or dialogue |
+| YunyangNeural     | Male   | zh-CN     | Clear and steady – suitable for general content |
+| HsiaoChenNeural   | Female | zh-TW     | Friendly and expressive – Taiwanese Mandarin |
+| HsiaoYuNeural     | Female | zh-TW     | Pleasant and casual – Taiwanese Mandarin |
+| YunJheNeural      | Male   | zh-TW     | Calm and clear – Taiwanese Mandarin |
+</details>
 
 - **Human Recordings**:  
-  A set of Chinese volunteers read and recorded selected song lyrics in a quiet environment. Recordings were performed using high-quality USB microphones at a 16 kHz sampling rate.
+  A native Chinese volunteer read and recorded selected song lyrics in a quiet environment. Recordings were performed using high-quality USB microphones at a 16 kHz sampling rate.
 
 ### Text Materials
 The linguistic content used for all speech stimuli was derived from a single full-length Mandarin Chinese song. The lyrics of this song were used consistently across all conditions and speakers.
