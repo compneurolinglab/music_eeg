@@ -210,7 +210,7 @@ All training data were automatically labeled based on the filenames of the prepr
 Each `.npy` file represents one stimulus segment derived from the same Chinese song, and filenames follow a structured convention such as:
 
 ```
-我_1.npy, 我_2.npy, 可以.npy, 沙滩.npy
+我_1.npy, 我_2.npy, 可_1.npy, 不_1.npy
 ```
 
 To generate labels for classification:
@@ -218,7 +218,7 @@ To generate labels for classification:
 - The unique Chinese word (or syllable) was extracted from the filename prefix.
 - A sorted list of all unique labels was constructed.
 - Each label was assigned a unique integer ID.
-- The resulting dictionary (e.g., `{ "我": 0, "可以": 1, "沙滩": 2 }`) was saved to `label_map.json`.
+- The resulting dictionary (e.g., `{ "我": 0, "可": 1, "不": 2 }`) was saved to `label_map.json`.
 
 **Python script example**:
 ```python
