@@ -24,13 +24,28 @@ Music-EEG-Cognition/
 
 ---
 
+## Overview
+
+- AI-synthesized 2-minute Mandarin song: "智联家园"
+- Playback at 4 speeds: 1×, 2×, 3×, 4×
+- High-density 256-channel EEG from 36 native Mandarin speakers
+- 263 syllables per speed, segmented using Whisper Large-V3
+- Syllable-level CNN features aligned to EEG via multivariate temporal response function (mTRF)
+
+---
+
 ## Key Features
 
-- **Support for speed-modulated stimuli** (1x, 2x, 3x, 4x)
-- **EEG + audio integration** to study neural resource allocation  
-- **Dual-pathway CNN model** for music and linguistic auditory decoding  
-- **Cochleagram-based preprocessing** mimicking the human cochlea  
-- **Transfer learning** with fine-tuned convolutional networks  
+| Module | Description |
+|--------|-------------|
+| **Stimulus Processing** | Whisper V3 used to segment 263 syllables at each speed |
+| **Audio Features** | Cochleagram features extracted and fed to fine-tuned CNN |
+| **EEG Recording** | 256-channel EEG while listening at 4 playback speeds |
+| **CNN Layers** | Activations from `conv1` to `conv5_G` and `conv5_S` |
+| **mTRF Analysis** | Align EEG with CNN-derived features (PCA-reduced) |
+| **Statistical Tests** | Cluster-based permutation (10k reps) using MNE & Eelbrain |
+| **Performance Evaluation** | Top-5 accuracy on syllable classification across speeds |
+
 
 
 ---
@@ -89,28 +104,17 @@ Two types of speech data were used for training and evaluation:
 ### Text Materials
 The linguistic content used for all speech stimuli was derived from a single full-length Mandarin Chinese song. The lyrics of this song were used consistently across all conditions and speakers.
 
-Two classification tasks were constructed by annotating the lyrics at different linguistic levels:
-
-- **Word Task**:  
-  Based on word-level annotations using Praat. Used to train a dual-pathway CNN for word classification + genre classification.
+One classification task was constructed by annotating the lyrics at syllable level:
 
 - **Syllable Task**:  
   Based on syllable-level annotations using Praat. Used to train a separate dual-pathway CNN for syllable classification + genre classification.
 
-This setup ensured controlled comparison of word- and syllable-level decoding while preserving consistent acoustic and lexical content.
+This setup ensured controlled comparison of syllable-level decoding while preserving consistent acoustic and lexical content.
 
-### Annotation Procedure
-Each audio clip was segmented and labeled with the following information:
-
-- **Syllable Boundaries**:  
-  Time-aligned using forced alignment scripts and manually corrected using Praat.
-
-- **Word Onsets**:  
-  Estimated from the original text structure and verified against the aligned audio in Praat.
+### Annotation Procedure for Transfer Learning
 
 - **Class Labels**:
-  - For Word Task: 63-class Chinese word labels
-  - For Syllable Task: 84-class Chinese syllable labels  
+  - For Syllable Task: 84-class Chinese syllable labels
   Labels were encoded into one-hot vectors using a `label_map.json` file.
 
 ### Tools and Automation
