@@ -1,4 +1,4 @@
-# Music-EEG-Cognition
+# Music_EEG
 
 This project explores the neural channel capacity of the human brain in processing music and speech using EEG data and deep learning models.
 
