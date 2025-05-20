@@ -11,9 +11,9 @@ Inspired by previous studies in auditory cognition and information theory, we in
 ```bash
 music_eeg/
 ├── data/                # Dataset and labels (syllable)
-│   ├── music_audio/     # Test audio stimuli (.mp3) and corresponding TextGrid annotations
-│   └── label/           # JSON label mappings (syllable, genre)
-│   └── eeg/             # EEG data
+│   ├── eeg/             # EEG data
+│   ├── label/           # JSON label mappings (syllable, genre)
+│   └── music_audio/     # Test audio stimuli (.mp3) and corresponding TextGrid annotations
 │
 ├── modules/             # Core processing modules
 │   └── Demo/            # Jupyter notebooks for demo: TTS for dataset generation, prediction, feature extraction
