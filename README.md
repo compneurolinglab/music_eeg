@@ -1,4 +1,4 @@
-# Music_EEG
+# Music-EEG
 
 This project explores the neural channel capacity of the human brain in processing music and speech using EEG data and deep learning models.
 
@@ -9,10 +9,11 @@ Inspired by previous studies in auditory cognition and information theory, we in
 ## Project Structure
 
 ```bash
-Music-EEG-Cognition/
+Music-EEG/
 ├── data/                # Dataset and labels (syllable)
 │   ├── music_audio/     # Test audio stimuli (.mp3) and corresponding TextGrid annotations
 │   └── label/           # JSON label mappings (syllable, genre)
+│   └── eeg/             # EEG data
 │
 ├── modules/             # Core processing modules
 │   └── Demo/            # Jupyter notebooks for demo: TTS for dataset generation, prediction, feature extraction
@@ -45,8 +46,6 @@ Music-EEG-Cognition/
 | **mTRF Analysis** | Align EEG with CNN-derived features (PCA-reduced) |
 | **Statistical Tests** | Cluster-based permutation (10k reps) using MNE & Eelbrain |
 | **Performance Evaluation** | Top-5 accuracy on syllable classification across speeds |
-
-
 
 ---
 
